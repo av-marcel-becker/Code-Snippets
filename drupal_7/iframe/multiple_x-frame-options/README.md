@@ -14,4 +14,4 @@ richtig gesetzt. Dasselbe passiert auch wenn man die Subdomain oder Protokoll we
 oder "http://example.de".
 
 ## required
-- Session
+- Session (Drupal always load)
