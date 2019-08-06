@@ -17,7 +17,8 @@
       {
          // set session with ref. array
          $_SESSION['referer'] = $current_ref;
-      }       
+      }     
+
    // get ref. from session   
    $ref = $_SESSION['referer'];  
    $ref_host = $ref['host'];    
