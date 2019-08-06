@@ -1,8 +1,8 @@
 <?php
    // whitelist
    $domains = [
-         'zittau.de',
-         'www.zittau.de',
+         'domain.de',
+         'www.domain.de',
       ]; 
       
    // get current ref. url
