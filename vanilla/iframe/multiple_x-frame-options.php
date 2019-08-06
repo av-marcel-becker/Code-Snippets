@@ -23,6 +23,7 @@
    $ref_host = $ref['host'];    
    $ref_scheme = $ref['scheme'];    
 
+   // check if the host is in the whitelist
    if(in_array($ref_host,$domains))
       {
          // sets the X-frame-options on the URL so that this can be used in the iframe
