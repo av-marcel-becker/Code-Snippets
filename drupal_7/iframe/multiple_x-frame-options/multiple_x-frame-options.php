@@ -1,5 +1,6 @@
 <?php
-function MODULE_page_delivery_callback_alter(&$delivery_callback) 
+// function in your Theme: template.php
+function THEME_page_delivery_callback_alter(&$delivery_callback) 
    {      
       // whitelist
       $domains = [
