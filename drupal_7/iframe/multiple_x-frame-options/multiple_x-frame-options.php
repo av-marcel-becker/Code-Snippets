@@ -20,7 +20,7 @@ function THEME_page_delivery_callback_alter(&$delivery_callback)
          {
             $_SESSION['referer'] = $current_ref;
             // Loggout destroys the session, so you need a cookie fallback
-            setcookie('ref', $current_ref,  NULL, '/');
+            setcookie('ref', check_plain($_SERVER['HTTP_REFERER']),  NULL, '/');
          }
          
       // by clicking in iframe you reference yourself eg. example.com not example.de
