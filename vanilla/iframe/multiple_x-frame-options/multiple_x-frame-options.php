@@ -1,5 +1,6 @@
 <?php
    // whitelist
+   $host = 'example.com'; // iframe host
    $domains = [
          'example.de',
          'www.example.de',
@@ -23,7 +24,7 @@
 
    // by clicking in iframe you reference yourself eg. example.com not example.de
    // you need this for prevent cookie manipulation
-   if(!$_SESSION['referer'] && $_COOKIE['ref'] && $current_ref_host == 'example.com')
+   if(!$_SESSION['referer'] && $_COOKIE['ref'] && $_SERVER['HTTP_HOST'] == $host)
       {
          // get current ref. url from cookie
          $current_ref = parse_url(filter_var($_COOKIE['ref'], FILTER_SANITIZE_URL));
