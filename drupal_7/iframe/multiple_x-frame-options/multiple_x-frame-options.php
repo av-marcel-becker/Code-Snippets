@@ -3,6 +3,7 @@
 function THEME_page_delivery_callback_alter(&$delivery_callback) 
    {      
       // whitelist
+      $host = 'example.com'; // iframe host
       $domains = [
             'example.de',
             'www.example.de',
@@ -25,7 +26,7 @@ function THEME_page_delivery_callback_alter(&$delivery_callback)
          
       // by clicking in iframe you reference yourself eg. example.com not example.de
       // you need this for prevent cookie manipulation
-      if(!$_SESSION['referer'] && $_COOKIE['ref'] && $current_ref_host == 'example.com')
+      if(!$_SESSION['referer'] && $_COOKIE['ref'] && $_SERVER['HTTP_HOST'] == $host)
          {
             // get current ref. url from cookie
             $current_ref = parse_url(check_plain($_COOKIE['ref']));
