@@ -4,8 +4,8 @@ function THEME_page_delivery_callback_alter(&$delivery_callback)
    {      
       // whitelist
       $domains = [
-            'domain.de',
-            'www.domain.de',
+            'example.de',
+            'www.example.de',
          ];
          
       // get current ref. url
@@ -19,8 +19,24 @@ function THEME_page_delivery_callback_alter(&$delivery_callback)
       if(in_array($current_ref_host,$domains))
          {
             $_SESSION['referer'] = $current_ref;
+            // Loggout destroys the session, so you need a cookie fallback
+            setcookie('ref', $current_ref,  time() + 60, '/');
          }
          
+      // by clicking in iframe you reference yourself eg. example.com not example.de
+      // you need this for prevent cookie manipulation
+      if(!$_SESSION['referer'] && $_COOKIE['ref'] && $current_ref_host == 'example.com')
+         {
+            // get current ref. url from cookie
+            $current_ref = parse_url(check_plain($_COOKIE['ref']));
+            $current_ref_host = $current_ref['host'];  
+            
+            // check if the host is in the whitelist
+            if(in_array($current_ref_host,$domains))
+               {
+                  $_SESSION['referer'] = $current_ref;
+               }
+         }   
       // get ref. from session 
       $ref = $_SESSION['referer'];       
       $ref_host = $ref['host'];    
