@@ -18,7 +18,7 @@
          // set session with ref. array
          $_SESSION['referer'] = $current_ref;
          // Loggout destroys the session, so you need a cookie fallback
-         setcookie('ref', $current_ref,  NULL, '/');
+         setcookie('ref', filter_var($_SERVER['HTTP_REFERER'], FILTER_SANITIZE_URL),  NULL, '/');
       }     
 
    // by clicking in iframe you reference yourself eg. example.com not example.de
